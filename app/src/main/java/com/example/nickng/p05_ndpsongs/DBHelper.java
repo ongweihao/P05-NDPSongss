@@ -32,7 +32,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String createNoteTableSql = "CREATE TABLE " + TABLE_SONG + "("
                 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + COLUMN_TITLE + " TEXT," +COLUMN_SINGERS + " TEXT" + COLUMN_YEAR + " INTEGER," + COLUMN_STARS + " INTEGER)";
+                + COLUMN_TITLE + " TEXT," +COLUMN_SINGERS + " TEXT," + COLUMN_YEAR + " INTEGER," + COLUMN_STARS + " INTEGER)";
         db.execSQL(createNoteTableSql);
         Log.i("info", "created tables");
 
@@ -45,7 +45,7 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public long insertSong(String title, String singers, Integer year, Integer stars) {
+    public void insertSong(String title, String singers, Integer year, Integer stars) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_TITLE, title);
@@ -59,7 +59,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.close();
         Log.d("SQL Insert",""+ result); //id returned, shouldn’t be -1
-        return result;
     }
 
     public ArrayList<Song> getAllSong() {

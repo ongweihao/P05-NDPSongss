@@ -21,8 +21,8 @@ public class songArrayAdapter extends ArrayAdapter<Song>{
     int resource;
     ImageView iv1, iv2, iv3, iv4, iv5;
 
-    public songArrayAdapter(Context context, int resource, ArrayList<Song> notes) {
-        super(context, resource, notes);
+    public songArrayAdapter(Context context, int resource, ArrayList<Song> songs) {
+        super(context, resource, songs);
         this.context = context;
         this.songs = songs;
         this.resource = resource;
@@ -51,7 +51,7 @@ public class songArrayAdapter extends ArrayAdapter<Song>{
         String singer = song.getSingers();
         int year = song.getYear();
 
-        tvTop.setText(year);
+        tvTop.setText("" + year);
         tvMiddle.setText(title);
         tvBottom.setText(singer);
         int stars = song.getStars();
