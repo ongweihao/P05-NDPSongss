@@ -34,8 +34,7 @@ public class modifySong extends AppCompatActivity {
         btnCancel = (Button)findViewById(R.id.btnCancel);
         rg = (RadioGroup)findViewById(R.id.rgStars3);
 
-        int selected = rg.getCheckedRadioButtonId();
-        final RadioButton rb = (RadioButton)findViewById(selected);
+
 
         i = getIntent();
 
@@ -46,29 +45,31 @@ public class modifySong extends AppCompatActivity {
         etSinger3.setText(data.getSingers());
         etYear3.setText("" + data.getYear());
 
-        int stars = data.getStars();
-
-
-        if (stars == 1) {
-            rb.setChecked(true);
-        } else if (stars == 2) {
-            rb.setChecked(true);
-        } else if (stars == 3) {
-            rb.setChecked(true);
-        } else if (stars == 4) {
-            rb.setChecked(true);
-        } else if (stars == 5) {
-            rb.setChecked(true);
-        }
+        int stars = data.getYear();
+        
+//        if (stars == 1) {
+//            rb.setChecked(true);
+//        } else if (stars == 2) {
+//            rb.setChecked(true);
+//        } else if (stars == 3) {
+//            rb.setChecked(true);
+//        } else if (stars == 4) {
+//            rb.setChecked(true);
+//        } else if (stars == 5) {
+//            rb.setChecked(true);
+//        }
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DBHelper dbh = new DBHelper(modifySong.this);
+                int selected = rg.getCheckedRadioButtonId();
+                RadioButton rb = (RadioButton)findViewById(selected);
+                int selectedRB = Integer.parseInt(rb.getText().toString());
                 data.setTitle(etTitle3.getText().toString());
                 data.setSingers(etSinger3.getText().toString());
                 data.setYear(Integer.parseInt(etYear3.getText().toString()));
-                data.setStars(rg.getCheckedRadioButtonId());
+                data.setStars(selectedRB);
                 dbh.updateSong(data);
                 dbh.close();
                 setResult(RESULT_OK, i);
@@ -94,5 +95,4 @@ public class modifySong extends AppCompatActivity {
             }
         });
     }
-
 }
