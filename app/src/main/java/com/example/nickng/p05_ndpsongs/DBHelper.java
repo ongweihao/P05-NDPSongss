@@ -64,7 +64,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public ArrayList<Song> getAllSong() {
         //TODO return records in Java objects
         ArrayList<Song> songList = new ArrayList<Song>();
-        String selectQuery = "SELECT " + COLUMN_TITLE + ", "
+        String selectQuery = "SELECT " + COLUMN_ID +"," + COLUMN_TITLE + ", "
                 + COLUMN_SINGERS + ", "
                 + COLUMN_YEAR + ", " + COLUMN_STARS
                 + " FROM " + TABLE_SONG;
@@ -74,11 +74,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                String title = cursor.getString(0);
-                String singers = cursor.getString(1);
-                int year = cursor.getInt(2);
-                int star = cursor.getInt(3);
-                Song obj = new Song(title,singers,year,star);
+                int id = cursor.getInt(0);
+                String title = cursor.getString(1);
+                String singers = cursor.getString(2);
+                int year = cursor.getInt(3);
+                int star = cursor.getInt(4);
+                Song obj = new Song(id,title,singers,year,star);
                 songList.add(obj);
             } while (cursor.moveToNext());
         }
@@ -109,6 +110,36 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
         return result;
     }
+
+    public ArrayList<Song> get5Songs() {
+        ArrayList<Song> songs = new ArrayList<Song>();
+
+        String selectQuery = "SELECT " + COLUMN_ID + ","
+                + COLUMN_TITLE + "," + COLUMN_SINGERS + "," + COLUMN_YEAR
+                + "," + COLUMN_STARS + " FROM " + TABLE_SONG + "" +
+                " WHERE " + COLUMN_STARS + " = 5";
+
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(selectQuery,null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(0);
+                String title = cursor.getString(1);
+                String singers = cursor.getString(2);
+                Integer years = Integer.valueOf(cursor.getString(3));
+                Integer stars = Integer.valueOf((cursor.getString(4)));
+                Song obj = new Song(id,title,singers,years,stars);
+                songs.add(obj);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return songs;
+    }
+
 
 
 
