@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".showSong" />
-        <activity android:name=".modifySong"></activity>
+        <activity android:name=".modifySong" />
+        <activity android:name=".row"></activity>
     </application>
 
 </manifest>
