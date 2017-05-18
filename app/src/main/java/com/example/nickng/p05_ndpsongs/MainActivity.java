@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText etTitle, etSingers, etYear,;
+    EditText etTitle, etSingers, etYear;
     Button btnInsert, btnShowList;
     DBHelper db;
 
