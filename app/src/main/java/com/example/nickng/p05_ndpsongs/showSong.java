@@ -1,7 +1,10 @@
 package com.example.nickng.p05_ndpsongs;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -17,6 +20,7 @@ public class showSong extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //TODO implement the Custom ListView
         setContentView(R.layout.activity_show_song);
+
         lv = (ListView) findViewById(R.id.lv);
         DBHelper db = new DBHelper(showSong.this);
         song = db.getAllSong();
@@ -25,6 +29,28 @@ public class showSong extends AppCompatActivity {
         lv.setAdapter(aa);
         aa.notifyDataSetChanged();
         db.close();
+
+   lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       @Override
+       public void onItemClick(AdapterView<?> parent, View view, int
+               position, long identity)  {
+
+               Intent i = new Intent(showSong.this,
+                   modifySong.class);
+               Song data = song.get(position);
+
+//           int id = data.get_id();
+//           String title = data.getTitle();
+//           String singer = data.getSingers();
+//           int years = data.getYear();
+//           int stars = data.getStars();
+
+//           Song target = new Song(title,singer,years,stars);
+           i.putExtra("data", data);
+           startActivity(i);
+
+       }
+   });
 
     }
 }
