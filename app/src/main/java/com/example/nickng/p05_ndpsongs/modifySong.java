@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 public class modifySong extends AppCompatActivity {
@@ -13,7 +15,10 @@ public class modifySong extends AppCompatActivity {
     TextView tvId;
     EditText etTitle, etSinger, etYear;
     Button btnUpdate, btnDelete, btnCancel;
+    RadioGroup rg;
     Song data;
+
+    Intent i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,20 +26,39 @@ public class modifySong extends AppCompatActivity {
         setContentView(R.layout.activity_modify_song);
 
         tvId = (TextView)findViewById(R.id.tvSongId);
-        etTitle = (EditText) findViewById(R.id.etSongTitle);
-        etSinger = (EditText) findViewById(R.id.etSinger);
-        etYear = (EditText) findViewById(R.id.etYear);
+        etTitle = (EditText) findViewById(R.id.etSongTitle3);
+        etSinger = (EditText) findViewById(R.id.editTextSingers3);
+        etYear = (EditText) findViewById(R.id.editTextYears3);
         btnUpdate = (Button)findViewById(R.id.btnUpdate);
         btnDelete = (Button)findViewById(R.id.btnDelete);
         btnCancel = (Button)findViewById(R.id.btnCancel);
 
-        final Intent i = getIntent();
-        data = (Song)i.getSerializableExtra("data");
+//        int selected = rg.getCheckedRadioButtonId();
+//        final RadioButton rb = (RadioButton)findViewById(selected);
 
-        tvId.setText(data.get_id());
+        i = getIntent();
+
+        data = (Song) i.getSerializableExtra("data");
+
+        tvId.setText("" + data.get_id());
         etTitle.setText(data.getTitle());
         etSinger.setText(data.getSingers());
-        etYear.setText(data.getYear());
+        etYear.setText("" + data.getYear());
+
+//        int stars = data.getYear();
+//
+//
+//        if (stars == 1) {
+//            rb.setChecked(true);
+//        } else if (stars == 2) {
+//            rb.setChecked(true);
+//        } else if (stars == 3) {
+//            rb.setChecked(true);
+//        } else if (stars == 4) {
+//            rb.setChecked(true);
+//        } else if (stars == 5) {
+//            rb.setChecked(true);
+//        }
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override

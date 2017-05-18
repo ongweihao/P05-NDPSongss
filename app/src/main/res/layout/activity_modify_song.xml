@@ -25,7 +25,7 @@
         android:text="Song Title" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/etSongTitle3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -38,7 +38,7 @@
         android:text="Singers" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editTextSingers3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -51,7 +51,7 @@
         android:text="Year" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editTextYears3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -64,7 +64,7 @@
         android:text="Stars" />
 
     <RadioGroup
-        android:id="@+id/rgStars"
+        android:id="@+id/rgStars3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
