@@ -47,10 +47,22 @@ public class showSong extends AppCompatActivity {
 
 //           Song target = new Song(title,singer,years,stars);
            i.putExtra("data", data);
-           startActivity(i);
+           startActivityForResult(i,9);
 
        }
    });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK && requestCode == 9 ) {
+            DBHelper db = new DBHelper(showSong.this);
+            song = db.getAllSong();
+            aa = new songArrayAdapter(showSong.this, R.layout.row, song);
+            lv.setAdapter(aa);
+        }
     }
 }
