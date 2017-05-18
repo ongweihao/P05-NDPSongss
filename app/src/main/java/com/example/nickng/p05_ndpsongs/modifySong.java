@@ -46,8 +46,7 @@ public class modifySong extends AppCompatActivity {
         etYear3.setText("" + data.getYear());
 
         int stars = data.getYear();
-
-//
+        
 //        if (stars == 1) {
 //            rb.setChecked(true);
 //        } else if (stars == 2) {
